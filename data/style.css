@@ -1,0 +1,28 @@
+body {
+    padding-top: 65px;
+}
+
+.bg-lightgolden {
+    background-color: lightgoldenrodyellow;
+}
+
+.bg-lightsalmon {
+    background-color: lightsalmon;
+}
+
+.bg-yellow {
+    background-color: yellow;
+}
+
+.hr-50 {
+    width: 50%;
+}
+
+.hr-30 {
+    width: 30%;
+}
+
+.border-10 {
+    border-style: solid;
+    border-width: 10px;
+}

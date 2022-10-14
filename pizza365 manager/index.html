@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza 365 Manager</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom CSS and JS -->
+    <script src="source/script.js"></script>
+    <!-- Font Awesome 5-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css">
+    <!-- DataTable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center text-uppercase my-5">danh sách đơn hàng</h1>
+        <table class="table table-bordered table-striped table-hover" id="orders-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Kích cỡ Combo</th>
+                    <th>Loại Pizza</th>
+                    <th>Nước uống</th>
+                    <th>Thành tiền</th>
+                    <th>Họ và tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+<!-- Modal Chi tiết đơn hàng-->
+<div class="modal fade" id="modalOrderDetails" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông tin đơn hàng <span id="titleModalOrderId"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid text-center">
+                    <h2 class="my-5">Order Details</h2>
+                    <div class="row form-group">
+                        <label for="modalDetail-orderId" class="col-form-label col-sm-4">Order ID</label>
+                        <input type="text" name="modalDetail-orderId" id="modalDetail-orderId"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-combo" class="col-form-label col-sm-4">Kích cỡ Combo</label>
+                        <select name="modalDetail-combo" id="modalDetail-combo" class="col-sm-8 form-control">
+                            <option value="S">S ( small )</option>
+                            <option value="M">M ( medium )</option>
+                            <option value="L">L ( large )</option>
+                        </select>
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-duongKinh" class="col-form-label col-sm-4">Đường kính Pizza</label>
+                        <input type="text" name="modalDetail-duongKinh" id="modalDetail-duongKinh"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-suon" class="col-form-label col-sm-4">Sườn nướng( miếng)</label>
+                        <input type="text" name="modalDetail-suon" id="modalDetail-suon" class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-salad" class="col-form-label col-sm-4">Salad (gr)</label>
+                        <input type="text" name="modalDetail-salad" id="modalDetail-salad"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-loaiPizza" class="col-form-label col-sm-4">Loại Pizza</label>
+                        <input type="text" name="modalDetail-loaiPizza" id="modalDetail-loaiPizza"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-voucher" class="col-form-label col-sm-4">Voucher ID</label>
+                        <input type="text" name="modalDetail-voucher" id="modalDetail-voucher"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-thanhTien" class="col-form-label col-sm-4">Thành tiền</label>
+                        <input type="text" name="modalDetail-thanhTien" id="modalDetail-thanhTien"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-giamGia" class="col-form-label col-sm-4">Giảm giá( Discount)</label>
+                        <input type="text" name="modalDetail-giamGia" id="modalDetail-giamGia"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-drink" class="col-form-label col-sm-4">Đồ uống</label>
+                        <select name="modalDetail-drink" id="modalDetail-drink" class="col-sm-8 form-control"></select>
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-soLuongNuoc" class="col-form-label col-sm-4">Số lượng nước</label>
+                        <input type="text" name="modalDetail-soLuongNuoc" id="modalDetail-soLuongNuoc"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-hoTen" class="col-form-label col-sm-4">Họ và tên</label>
+                        <input type="text" name="modalDetail-hoTen" id="modalDetail-hoTen"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-email" class="col-form-label col-sm-4">Email</label>
+                        <input type="text" name="modalDetail-email" id="modalDetail-email"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-soDienThoai" class="col-form-label col-sm-4">Số điện thoại</label>
+                        <input type="text" name="modalDetail-soDienThoai" id="modalDetail-soDienThoai"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-diaChi" class="col-form-label col-sm-4">Địa chỉ</label>
+                        <input type="text" name="modalDetail-diaChi" id="modalDetail-diaChi"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-loiNhan" class="col-form-label col-sm-4">Lời nhắn</label>
+                        <input type="text" name="modalDetail-loiNhan" id="modalDetail-loiNhan"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-trangThai" class="col-form-label col-sm-4">Trạng thái đơn hàng</label>
+                        <input type="text" name="modalDetail-trangThai" id="modalDetail-trangThai"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-ngayTao" class="col-form-label col-sm-4">Ngày tạo đơn</label>
+                        <input type="text" name="modalDetail-ngayTao" id="modalDetail-ngayTao"
+                            class="col-sm-8 form-control">
+                    </div>
+                    <div class="row form-group">
+                        <label for="modalDetail-ngayCapNhat" class="col-form-label col-sm-4">Ngày cập nhật</label>
+                        <input type="text" name="modalDetail-ngayCapNhat" id="modalDetail-ngayCapNhat"
+                            class="col-sm-8 form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btnModal-confirm">Confirm</button>
+                <button type="button" class="btn btn-danger btnModal-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Thông báo cập nhật-->
+<div class="modal fade" id="modalStatusUpdateSuccess" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thông báo cập nhật</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2 id="modalStatus-h1" class="text-center"></h2>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
